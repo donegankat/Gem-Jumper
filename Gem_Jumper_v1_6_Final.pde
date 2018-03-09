@@ -85,7 +85,7 @@ void setup(){
 
 //draw
 void draw(){
-  keys();
+  menuNavigation();
   
 //start menu
   if(screenStatus == "mainMenu"){
@@ -107,37 +107,21 @@ void draw(){
 }//end draw
 
 
-//keys()
-void keys(){
-  //keyPressed
-  if(keyPressed){
-    //left key
-    if(keyCode==LEFT){
-      dude.face="left";
-    }
-    //right key
-    if(keyCode==RIGHT){
-      dude.face="right";
-    }
-    //space key
-    if(key==' ' && dude.jumping=="no"){
-      dude.jumping="jump";
-    }
-  }//end keyPressed
-
+//menuNavigation()
+void menuNavigation(){
   //mousePressed
   if(mousePressed){
     if(mouseX>=width/2-40 && mouseX < width/2+60 && mouseY >= height/2+50 && mouseY < height/2+75){
         onButton = "pressMain";
     } 
-  if(mouseX>=width/2-40 && mouseX < width/2+60 && mouseY >= height/2+85 && mouseY < height/2+110){
+    if(mouseX>=width/2-40 && mouseX < width/2+60 && mouseY >= height/2+85 && mouseY < height/2+110){
         onButton = "pressHelp";
- }
+    }
     if(mouseX>=width/2-40 && mouseX < width/2+60 && mouseY >= height-50 && mouseY < height-25){
-      onButton = "pressHelpPage";
-  } 
+        onButton = "pressHelpPage";
+    } 
   }//end mousePressed
-}//end keys
+}//end menuNavigation
 
 
 //mouseRelease
@@ -163,6 +147,22 @@ void mouseReleased(){
   }
 }//end mouseRelease
 
+//keyPressed
+void keyPressed()
+{
+  //left key
+    if(keyCode==LEFT){
+      dude.face="left";
+    }
+    //right key
+    else if(keyCode==RIGHT){
+      dude.face="right";
+    }
+    //space key
+    else if(key==' ' && dude.jumping=="no"){
+      dude.jumping="jump";
+    }
+}//end keyPressed
 
 //keyReleased
 void keyReleased(){
@@ -171,11 +171,11 @@ void keyReleased(){
     dude.standing();
   }
   //left key
-  if(keyCode==LEFT){
+  else if(keyCode==LEFT){
     dude.standing();
   }
   //space key
-  if(key==' '){
+  else if(key==' '){
     dude.jumping="fall";
   }
 }//end keyReleased
